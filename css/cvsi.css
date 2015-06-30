@@ -1,0 +1,746 @@
+.navbar-wrapper { 
+        margin-top:0px;
+        background: url('../images/headerBackground.png') no-repeat #000000;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 20;
+    }
+
+.nav a, .nav a:link .nav a:visited, .nav a:active, .nav a:hover
+{
+    font-family: 'Roboto', sans-serif; 
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.pagination-container { 
+    margin-bottom: 40px;
+}
+
+.pager li > a, .pager li > span {
+    background-color: transparent;
+    border: 1px solid #FF0000;
+    border-radius: 15px;
+    display: inline-block;
+    padding: 5px 14px;
+    color: #FF0000;
+}
+
+.pager li > a:hover {
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+
+.black-container.gallery {
+    padding-bottom: 40px;
+    margin: 144px 0px 0px 0px;
+}
+
+.gallery-image 
+{
+    min-height: 340px;
+}
+
+.gallery-detail-image {
+    margin-bottom: 20px;
+}
+
+.gallery-image h2 { 
+    text-align:  center; 
+}
+.gallery-image p {
+    text-align: center;
+    color: #CCCCCC;
+}
+
+.topnav-left { 
+    position: absolute;
+    top: 10px;
+    z-index: 9999;
+    left: 50%;
+    margin-left:-450px;
+    display: none;
+}
+.topnav-right { 
+    position: absolute;
+    top: 10px;
+    z-index: 9999;
+    left: 50%;
+    margin-left: 150px;
+    display: none;
+}
+
+.topnav-left { 
+    display: none;
+}
+
+.topnav-right {
+    display: none;
+}
+
+.topnav-left a, .topnav-left a:link, .topnav-left a:active, .topnav-left a:visited, .topnav-left a:hover,
+.topnav-right a, .topnav-right a:link, .topnav-right a:active, .topnav-right a:visited, .topnav-right a:hover  {
+    color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
+    font-size:13px;
+    font-weight: 500;
+    text-decoration: none;
+    vertical-align: middle;
+    position: relative;
+    padding: 0px 2px;
+}
+.topnav-right a.highlight, .topnav-right a.highlight:link, .topnav-right a.highlight:active, .topnav-right a.highlight:visited
+{
+    color : #FF0000;
+}
+.topnav-right a.highlight:hover {
+    color: #FFFFFF;
+}
+.topnav-left a:hover,
+.topnav-right a:hover
+{
+    color:#FF0000;
+}
+
+h1.red-container-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    margin: 0px 0px 40px 0px;
+    padding: 0px;
+    text-align: center;
+    font-size: 28px;
+}
+
+footer {
+    padding: 0px 0px;
+}
+
+footer h2 { 
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #FF0000;
+}
+
+.footer-nav {
+    margin: 0px;
+    padding: 0px;
+}
+
+.footer-nav li {
+    list-style: none;
+    padding: 15px 0px;
+    margin: 5px 0px;
+    display: block;
+    border-bottom: 1px solid #333333;
+}
+
+.footer-nav a, .footer-nav a:link, .footer-nav a:active, .footer-nav a:visited, .footer-nav a:hover {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color:#CCCCCC;
+    display: block;
+    text-align: center;
+}
+
+.footer-nav a:hover
+{
+    color:#FF0000;
+}
+
+.footer-container {
+    background-color: #000000;
+    color: #CCCCCC;
+}
+
+.navbar-toggle {
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    float: right;
+    margin-bottom: 8px;
+    margin-right: 15px;
+    margin-top: 8px;
+    padding: 9px 10px;
+    position: relative;
+    top:8px;
+}
+
+.navbar-collapse {
+    border-top: 0px solid transparent;
+    box-shadow: 0 0px 0 rgba(255, 255, 255, 0.1) inset;
+    overflow-x: visible;
+    padding-left: 0px;
+    padding-right:0px;
+    margin-top:10px;
+}
+
+
+.nav li > a {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+
+.navbar-inverse {
+	background: transparent;
+	border:0px;
+}
+
+.red-container { 
+    background-color:#d70000; 
+    margin:0px; 
+    padding:40px 0px; 
+    color:#000000;
+}
+
+.black-container {
+    background-color: #000000;
+    margin-top: 144px;
+}
+
+.black-container.gallery h2 { 
+    font-size: 16px;
+    color: #FF0000;
+}
+
+h1.black-container-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    margin: 40px 0px 10px 0px;
+    padding: 0px;
+    text-align: center;
+    color:#FF0000;
+    font-size: 38px;
+}
+
+h1.black-container-title.products {
+    text-align: left;
+}
+
+
+h3.product-detail-images {
+    margin: 0px;
+    padding: 0px;
+    color:#666666;
+}
+
+.product-detail-hr { 
+    border-color:#333;
+}
+
+.product-detail-price {
+    color:#FF0000;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+}
+
+.product-detail-desc {
+    color: #ccc;
+    font-family: "Roboto", sans-serif;
+    font-size:14px;
+    content: #CCC;
+}
+
+h2.product-listing-title > a:link, 
+h2.product-listing-title > a:visited, 
+h2.product-listing-title > a:visited, 
+h2.product-listing-title > a:hover {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size:16px;
+    color: #FF0000;
+    text-decoration: none;
+}
+
+h2.product-listing-title > a:hover {
+    color: #fff;
+}
+
+.black-container.gallery-detail { 
+    padding-bottom: 40px;
+}
+
+.gallery-detail h1.black-container-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    margin: 40px 0px 40px 0px;
+    padding: 0px;
+    color:#FF0000;
+    text-align: left;
+    font-size: 38px;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #FF0000;
+    border-color: #ff0000;
+    color: #fff;
+    cursor: default;
+    z-index: 2;
+}
+.pagination > li > a, .pagination > li > span {
+    background-color: transparent;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    float: left;
+    line-height: 1.42857;
+    margin-left: -1px;
+    padding: 6px 12px;
+    position: relative;
+    text-decoration: none;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  z-index: 3;
+  color: #fff;
+  background-color: #ff0000;
+  border-color: #ff0000;
+}
+.pa
+
+.pagination > li > a, .pagination > li > span {
+    background-color: transparent;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    float: left;
+    line-height: 1.42857;
+    margin-left: -1px;
+    padding: 6px 12px;
+    position: relative;
+    text-decoration: none;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #FF0000;
+  background-color: transparent;
+}
+
+.nav li > a {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.nav { 
+    top: 80px; position: relative;
+}
+
+.black-outline-box {
+    border: 1px solid #000000;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    min-height: 375px;
+    margin-bottom: 20px;
+}
+
+.black-outline-box > p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #000000;
+    font-weight: 500;
+    padding:10px;
+    text-align: center;
+
+}
+
+.black-outline-box-image { text-align: center; padding: 20px 0px; }
+
+ .navbar-brand-centered img { 
+        width: 140px; 
+    }
+
+    .navbar-brand-centered {
+        position: absolute;
+        left: 10px;
+        display: block;
+        width: 140px;
+        text-align: center;
+        background-color: transparent;
+        padding:0px;
+        margin: 0px;
+    }
+
+
+.black-outline-box h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    margin: 10px 0px;
+    padding: 0px;
+    text-align: center;
+    font-size: 21px;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+    border-color:#000000;
+    border-radius:0;
+}
+
+.btn { 
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+}
+
+.btn-primary.btn-outline {
+    color: #FF0000;
+    border-color:#FF0000;
+}
+
+.btn-inverse.btn-outline {
+    color: #428bca;
+}
+
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+
+.btn-info.btn-outline {
+    color: #5bc0de;
+}
+
+.btn-warning.btn-outline {
+    color: #f0ad4e;
+}
+
+.btn-danger.btn-outline {
+    color: #d9534f;
+}
+
+.btn-inverse.btn-outline {
+    color: #000000;
+}
+
+.btn-inverse.btn-outline:hover{
+    color:#FFFFFF;
+    background-color: #000000;
+}
+.btn-primary.btn-outline:hover
+{
+    background:#FF0000;
+}
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+    color: #fff;
+}
+
+.red-quote-box { 
+    margin: 20px 0px 0px 0px; 
+    padding:20px 0px 0px 0px; 
+    text-align: center;
+}
+.carousel-inner > item { position: relative; overflow:hidden; }
+.carousel-inner > item > .img-responsive { position: absolute; top:0; bottom:0; }
+
+h2.andmore { 
+    text-align: center;
+    font-weight: 900;
+    font-size: 21px;
+}
+
+.black-outline-box-image > .center { 
+    text-align: center; 
+    display: inline; 
+}
+
+#carouselMobile {
+    display:block;
+}
+#carouselWeb {
+    display:none;
+}
+
+
+
+.dropdown-menu {
+    background-clip: padding-box;
+    background-color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
+    display: none;
+    float: left;
+    font-size: 14px;
+    left: 0;
+    list-style: outside none none;
+    margin: 2px 0 0;
+    min-width: 160px;
+    padding: 5px 0;
+    position: absolute;
+    text-align: left;
+    top: 100%;
+    z-index: 1000;
+}
+
+.dropdown-menu .divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #333;
+}
+.dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #CCC;
+  white-space: nowrap;
+  text-transform: none;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 300;
+   font-size: 14px;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #FF0000;
+  text-decoration: none;
+  background-color: #030303;
+  text-transform: none;
+    font-family: 'Roboto', sans-serif;
+   font-weight: 300;
+   font-size: 14px;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: #FF0000;
+  text-decoration: none;
+  background-color: #333333;
+  outline: 0;
+    font-family: 'Roboto', sans-serif;
+   font-weight: 300;
+   font-size: 14px;
+}
+
+@media screen and (min-width:768px) {
+
+    footer {
+        padding: 40px 0px;
+    }
+
+    .footer-nav {
+        margin: 0px;
+        padding: 0px;
+    }
+    .footer-nav li:first-child { 
+        padding-left: 0px
+     }
+    .footer-nav li {
+        list-style: none;
+        padding: 0px 10px;
+        margin: 2px 0px;
+        display: inline-block;
+        border-bottom: 0px;
+    }
+
+    .footer-nav a, .footer-nav a:link, .footer-nav a:active, .footer-nav a:visited, .footer-nav a:hover {
+        font-family: "Roboto", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color:#FFFFFF;
+    }
+
+    .footer-nav a:hover
+    {
+        color:#FF0000;
+    }
+
+    .footer-nav li:first-child { 
+        padding-left: 0px
+     }
+    #carouselWeb {
+        display:block;
+    }
+
+    #carouselMobile {
+        display:none;
+    }
+
+    .navbar-brand-centered img { 
+        width: 200px; 
+    }
+
+    .navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        display: block;
+        width: 200px;
+        text-align: center;
+        background-color: transparent;
+        padding:0px;
+        margin: 0px;
+    }
+
+    .navbar>.container .navbar-brand-centered, 
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -100px;
+    }
+
+    h1.red-container-title {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        margin: 0px 0px 40px 0px;
+        padding: 0px;
+        text-align: center;
+        font-size: 48px;
+    }
+
+    .navbar-wrapper { 
+        margin-top:0px;
+        background: url('../images/headerBackground.png') no-repeat #000000;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 20;
+        height:144px;
+    }
+
+    .nav li > a {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .topnav-left { 
+        margin-left:-350px;
+        display: block;
+    }
+
+    .topnav-right { 
+        margin-left: 100px;
+        display: block;
+    }
+
+    .nav a, .nav a:link .nav a:visited, .nav a:active, .nav a:hover
+    {
+        font-family: 'Roboto', sans-serif; 
+        font-size: 17px;
+        text-transform: uppercase;
+    }
+}
+
+.credits { margin: 10px 0px; text-align: center; }
+.footer-social { margin: 20px 0px; text-align:center }
+.footer-social a:link, .footer-social a:active, .footer-social:visited, .footer-social a:hover {
+    padding-right:10px;
+
+}
+
+.mapArea {
+    position: relative;
+}
+.locationHeader { 
+    width: 600px;
+    position: absolute;
+    top:0px;
+    z-index: 999;
+    height: 70px;
+    line-height: 40px;
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: #FFFFFF;
+    background-color: #000;
+    padding: 15px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .locationHeader { 
+        width: 600px;
+        position: absolute;
+        top:0px;
+        left:50%;
+        margin-left: -300px;
+        z-index: 999;
+        height: 70px;
+        line-height: 40px;
+        font-family: "Roboto", sans-serif;
+        font-size: 22px;
+        font-weight: 300;
+        color: #FFFFFF;
+        background-color: #000;
+        padding: 15px 30px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    .credits { margin: 10px 0px; text-align: left;}
+    .footer-social { margin: 40px 0px; float: right;}
+
+    .nav li > a {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .navbar-brand-centered img { 
+        width: 200px;
+        max-width: 100%;
+    }
+
+    .navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        display: block;
+        width: 200px;
+        text-align: center;
+        background-color: transparent;
+        padding:0px;
+        margin: 0px;
+    }
+
+    .navbar>.container .navbar-brand-centered, 
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -100px;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+
+    .nav li > a {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+     .navbar-brand-centered img { 
+        width: 297px; 
+    }
+
+     .navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        display: block;
+        width: 297px;
+        text-align: center;
+        background-color: transparent;
+        padding:0px;
+        margin: 0px;
+    }
+
+    .topnav-left { 
+        margin-left:-450px;
+        display: block;
+    }
+
+    .topnav-right { 
+        margin-left: 200px;
+        display: block;
+    }
+
+    .navbar>.container .navbar-brand-centered, 
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -149px;
+    }
+}
