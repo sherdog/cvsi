@@ -37,6 +37,17 @@ function fixTitle($text) {
 	return $clean;
 }
 
+function create_page_url($url)
+{
+	$text = strtolower(trim($url));
+	// replace all white space sections with a dash
+	$text = str_replace(' ', '-', $text);
+	// strip all non alphanum or -
+	$cleanedUrl = ereg_replace("[^A-Za-z0-9\-]", "", $text);
+	
+	return $cleanedUrl;
+}
+
 function printEditorCB($id, $name, $value, $params=""){
 	echo "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">\n";
 	echo "<tr>\n";
@@ -303,15 +314,15 @@ function recurse_pages($id=0, $level=0) {
 		echo "</td>\n";
 		echo "<td align=\"right\" >";
 		
-		if(user_has_permission('content_publisher') && user_has_page_permissions($pInfo['page_content_id'], 'publisher')) { 
-			if($level!=1){
-			echo "<a href=\"".PAGE_PUBLISH."?section=webpage&parent=".$pInfo['page_content_id']."\" title=\"Add Sub Page\">Add Subpage</a>";
+		
+		if($level==1) {
+			echo "<a class=\"table_addsubpage_link\" href=\"".PAGE_PUBLISH."?section=webpage&parent=".$pInfo['page_content_id']."\" title=\"Add Sub Page\">Add Subpage</a>";
 			echo " ";
-			}
 		}
+		
 		if(user_has_permission('banners')) { 
-			echo "<a class=\"table_banner_link\" href=\"".PAGE_MANAGE."?action=banners&section=webpage&id=".$pInfo['page_content_id']."\" title=\"Add Banner\">Advert</a>\n";
-			echo " ";
+			//echo "<a class=\"table_banner_link\" href=\"".PAGE_MANAGE."?action=banners&section=webpage&id=".$pInfo['page_content_id']."\" title=\"Add Banner\">Advert</a>\n";
+			//echo " ";
 		}
 		if(user_has_permission('content') && user_has_page_permissions($pInfo['page_content_id'])) { 
 			echo "<a class=\"table_edit_link\" href=\"".PAGE_MANAGE."?action=edit&section=webpage&id=".$pInfo['page_content_id']."\" title=\"Edit " . output($pInfo['page_content_title']) . "\">Edit</a>\n";

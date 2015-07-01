@@ -221,6 +221,22 @@ h1.black-container-title.products {
     text-align: left;
 }
 
+h1.black-container-title.page {
+    text-align: left;
+}
+
+.page { 
+    color: #ccc;
+}
+
+.page h3 {
+    color:  #ff0000;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
 
 h3.product-detail-images {
     margin: 0px;

@@ -19,7 +19,8 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('home');
+		$data['title'] = "CVSi Motorsports &#8211; Your #1 Source for Everything Car, Truck, Marine and Powersports in the Cedar Valley &#8211; Cedar Falls, IA";
+		$this->load->view('home', $data);
 	}
 }
 

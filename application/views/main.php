@@ -15,9 +15,6 @@
       <?php echo $data['body']; ?>
     </div>
   </div>
-
-
-
   <?php $this->load->view('global/footer'); ?>
   </body>
 </html>

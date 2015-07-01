@@ -33,13 +33,11 @@
                 <li class="dropdown">
                   <a href="<?php echo site_url() . 'services'; ?>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
+
+                    <?php foreach($this->nav_model->subpages(1) as $item) : ?>
+                    <li><a href="<?php echo site_url(); ?>page/<?php echo $item->page_content_url; ?>"><?php echo $item->page_content_title; ?></a></li>
+                    <?php endforeach; ?>
+
                   </ul>
                   </li>
                 <li><a href="<?php echo site_url() . 'gallery'; ?>">Gallery</a></li>

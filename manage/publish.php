@@ -135,13 +135,12 @@ switch($_POST['action']){
 					$row['page_content_seo_title'] 			= $_POST['seo_title'];
 					$row['page_content_seo_description'] 	= $_POST['seo_description'];
 					$row['page_content_seo_keyword'] 		= $_POST['seo_keywords'];
-					$row['page_content_sort_order'] 		= $_POST['sort_order'];
+					$row['page_content_sort_order'] 		= ($_POST['sort_order']) ? $_POST['sort_order'] : 0;
 					$row['page_content_author'] 			= $_POST['author'];
 					$row['page_content_added'] 				= time();
-					$row['parent'] 							= $_POST['parent'];
+					$row['parent'] 							= ($_POST['parent']) ? $_POST['parent'] : 0;
 					$row['page_content_status'] 			= $_POST['status'];
-					$row['page_content_member']				= $_POST['member'];
-					$row['page_content_mirror']				= $_POST['page_content_mirror'];
+					$row['page_content_member']				= ($_POST['member']) ? $_POST['member'] : 0;
 					$row['custom_url']						= $_POST['custom_url'];
 					$row['page_content_form'] 				= $_POST['page_content_form'];
 					$row['page_content_show_in_menu']		= $_POST['page_content_show_in_menu'];

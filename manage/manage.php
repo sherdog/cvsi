@@ -80,13 +80,12 @@ switch($_POST['action']){
 					$row['page_content_seo_title'] 			= $_POST['seo_title'];
 					$row['page_content_seo_description'] 	= $_POST['seo_description'];
 					$row['page_content_seo_keyword'] 		= $_POST['seo_keywords'];
-					$row['page_content_sort_order'] 		= $_POST['sort_order'];
+					$row['page_content_sort_order'] 		= ($_POST['sort_order']) ? $_POST['sort_order'] : 0;
 					$row['page_content_added'] 				= time();
 					$row['page_content_status'] 			= $_POST['status'];
-					$row['parent'] 							= $_POST['parent'];
-					$row['page_content_member']				= $_POST['member'];
+					$row['parent'] 							= ($_POST['parent']) ? $_POST['parent'] : 0;
+					$row['page_content_member']				= ($_POST['member']) ? $_POST['member'] : 0;
 					$row['page_content_custom_1']			= $_POST['page_content_custom_1']; //ipipeline
-					$row['page_content_mirror']				= $_POST['page_content_mirror'];
 					$row['page_content_last_modified_date'] = time();
 					$row['custom_url']						= $_POST['custom_url'];
 					$row['page_content_show_in_menu']		= $_POST['page_content_show_in_menu'];
@@ -631,7 +630,7 @@ $page = $_GET['section'];
 <script type="text/javascript" src="jscripts/ui.datepicker.js"></script>
 <script type="text/javascript" src="jscripts/jquery.timePicker.js"></script>
 <script language="javascript" src="jscripts/jquery.maskedinput.js"></script>
-
+<script type="text/javascript" src="jscripts/simpletip.js"></script>
 <script language="javascript" src="jscripts/jquery.simpletip-1.3.1.min.js"></script>
 
 <link rel="stylesheet" href="jscripts/ui.datepicker.css" />
@@ -1826,7 +1825,7 @@ switch($_GET['section']) {
 			$newsResult = dbQuery("SELECT * FROM blog WHERE id = " . $_GET['id']);
 			$n = dbFetchArray($newsResult);
 				?>
-				<form id="event" name="webpage" method="post" action="<?=PAGE_MANAGE?>" enctype="multipart/form-data">
+				<form id="event" name="blog" method="post" action="<?=PAGE_MANAGE?>" enctype="multipart/form-data">
 				<input type="hidden" name="client" value="<?=$_SESSION['client_id']?>" />
 				<input type="hidden" name="action" value="update" />
                 <input type="hidden" name="section" value="<?=$_GET['section']?>" />
@@ -3463,7 +3462,7 @@ switch($_GET['section']) {
 					
 					
 				?>
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" >
+  				<table width="100%" border="0" cellspacing="0" cellpadding="0" >
 				  <tr>
 				    <td valign="top" class="formBody">
 				      <br />
@@ -3508,7 +3507,10 @@ switch($_GET['section']) {
 						 
 						  ?>
                           </td>
-				         <td align="right" ><a class="table_edit_link" href="<?=PAGE_MANAGE?>?action=edit&section=article&id=<?=$aInfo['article_id']?>">Edit</a> <a class="table_delete_link" href="<?=PAGE_MANAGE?>?action=delete&amp;section=article&amp;id=<?=$aInfo['article_id']?>" onclick="return confirm('Are you sure you want to delete this article? this is NOT UNDOABLE');">Delete</a></td>
+				         <td align="right" >
+				         	<a class="table_edit_link" href="<?=PAGE_MANAGE?>?action=edit&section=article&id=<?=$aInfo['article_id']?>">Edit</a> 
+				         	<a class="table_delete_link" href="<?=PAGE_MANAGE?>?action=delete&amp;section=article&amp;id=<?=$aInfo['article_id']?>" onclick="return confirm('Are you sure you want to delete this article? this is NOT UNDOABLE');">Delete</a>
+				         </td>
 			            </tr>
                         <?
 						$count++;
@@ -3549,23 +3551,6 @@ switch($_GET['section']) {
 						  <tr>
 							<td width="785" valign="top" class="formBody">
 							  <table width="100%" border="0" cellspacing="0" cellpadding="5">
-								<!--
-                                <tr>
-								  <td class="pageTitleSub"></td>
-								</tr>
-								<tr>
-								  <td class="pageTitleSub">Mirror  Page 
-								    <input type="hidden" name="page_content_mirror" id="page_content_mirror" value="<?=$p['page_content_mirror']?>" />
-								    <dl id="mirror" class="select_dropdown">
-										<?php
-                                        recurse_navigation_li_top($p['page_content_mirror']);
-                                        recurse_navigation_li($p['page_content_mirror']);
-                                        recurse_navigation_li_botttom();
-                                        ?>
-                                    </dl>
-                                  </td>
-								</tr>
-                                -->
                                <tr>
                               <td class="pageTitleSub">Title</td>
                             </tr>
@@ -3574,14 +3559,13 @@ switch($_GET['section']) {
                             </tr>
                            
                             <tr>
-								  <td class="pageTitleSub">Page Image <input name="page_content_image" type="file" class="textField-title" id="page_content_image" /><Span class="smallText"> Size: 620px x 200px</Span>
+								<td class="pageTitleSub">Page Image <input name="page_content_image" type="file" class="textField-title" id="page_content_image" /><Span class="smallText"> Size: 620px x 200px</Span>
                                     <?php
-							if($p['page_content_image'] != '') {
-								echo "<br /><span class=\"smallText\">Current: " . $p['page_content_image']." <a href=\"".PAGE_MANAGE."&action=deletepageimage&id=".$_GET['id']."\">(delete)</a></span>";	
-							}
-							?>
-                                  
-                                  </td>
+									if($p['page_content_image'] != '') {
+										echo "<br /><span class=\"smallText\">Current: " . $p['page_content_image']." <a href=\"".PAGE_MANAGE."&action=deletepageimage&id=".$_GET['id']."\">(delete)</a></span>";	
+									}
+									?>
+                           		</td>
 							</tr>
                             
                           
@@ -3592,7 +3576,6 @@ switch($_GET['section']) {
 								<tr>
 								  <td>
                                   <? echo printEditorCB("content", "content", $p['page_content_text']); ?>
-                                  
                                  </td>
 								</tr>
 							  </table>
@@ -3622,35 +3605,6 @@ switch($_GET['section']) {
 								</tr>
 							  </table>
 							  </div>          
-                       <!-- Media Thing
-                       <div class="mb20"></div> 
-                       <div id="media_toggle">
-                       <table width="100%" cellspacing="0" cellpadding="0">
-                       <tr>
-                        	<td width="29"><img id="" width="29" height="28" src="images/sectionTitleArrow.jpg"/></td>
-                            <td class="sectionTitle">Media</td>
-                       </tr>
-                     
-                       </table>
-                        </div>
-                        <div class="expandable" id="media">
-                      <table width="100%" border="0" cellspacing="0" cellpadding="5">
-                        <tr>
-                          <td class="fieldLabel">Video Direct Upload</td>
-                        </tr>
-                        <tr>
-                          <td><input type="file" name="video_file" id="video_file" /></td>
-                        </tr>
-                        <tr>
-                          <td class="fieldLabel">Video URL <span class="smallText">(external youtube/.flv)</span></td>
-                        </tr>
-                        <tr>
-                          <td><input type="text" name="page_content_media_url" id="page_content_media_url" class="textField-title" style="width:350px" value="<?=output($p['page_content_media_url'])?>" />
-                            <br /></td>
-                        </tr>
-                      </table>
-                      </div>
-                      End Media THing -->
 							  
 							<div class="mb20"></div>
 							<div id="seo_options_toggle">
@@ -3784,76 +3738,7 @@ switch($_GET['section']) {
                       
 						<?
 			break;
-			case 'banners':
-			//we can display all the current banners 
-			//user selets the ones to display
-			//also add a simple add banner
-			?>
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" >
-                <tr>
-                  <td valign="top" class="formBody">
-                    <form>
-                      <table width="100%" border="0" cellspacing="0" cellpadding="5">
-                        <tr>
-                          <td><table width="100%" border="0" cellspacing="0" cellpadding="5">
-                            <tr>
-                              <td>&nbsp;</td>
-                              <td width="100"><a class="button modal" id="attachBanner" href="modals/attachBanner.php?page=<?=$_GET['id']?>"><span class="add">Add Banner</span></a></td>
-                            </tr>
-                          </table></td>
-                        </tr>
-                      </table>
-                      
-                      <table width="100%" border="0" cellspacing="0" cellpadding="5" class="stripeTable">
-                      <tr>
-                      	<td class="tableRowHeader" width="1" align="left">&nbsp;</td>
-                          <td class="tableRowHeader" align="left">Title</td>
-                          <td class="tableRowHeader" align="left">Date Started</td>
-                          <td class="tableRowHeader" align="left">Link</td>
-                          <td class="tableRowHeader" align="left">&nbsp;</td>
-                      </tr>
-                        <?
-                        $pageBannerResults = dbQuery('SELECT * FROM page_banners WHERE page_content_id = ' . $_GET['id']);
-                        
-                        if(dbNumRows($pageBannerResults)) {
-                            $count=0;
-                            while($bInfo = dbFetchArray($pageBannerResults)) {
-								
-							$bResults = dbQuery('SELECT banner_title,  banner_url FROM banners WHERE banner_id = ' . $bInfo['banners_id']);
-							$banner = dbFetchArray($bResults);
-								
-                            $row = $count % 2;
-                            ?>
-                            <tr>
-                            <td><img src="images/icons/photo_16x16.gif" width="16" height="16" /></td>
-                              <td><?=output($banner['banner_title'])?></td>
-                              <td><? echo date('m/d/Y', $bInfo['date_added']); ?></td>
-                              <td><? echo $banner['banner_url']; ?></td>
-                              <td align="right" ><a class="table_delete_link" href="<?=PAGE_MANAGE?>?action=delete&amp;section=pagebanners&amp;id=<?=$bInfo['page_banners_id']?>&page=<?=$_GET['id']?>" onclick="return confirm('Are you sure you want to delete this banner? this is NOT UNDOABLE');">Delete</a></td>
-                            </tr>
-                            <?
-                            $count++;
-                            }
-                        } else {
-                            
-                            ?>
-                            <tr>
-                                <td colspan="5">No banners returned</td>
-                            </tr>
-                            <?
-                            
-                        }
-                        ?>
-                      </table>
-                    </form></td>
-                </tr>
-              </table>
-            <p>
-              <?
-			break;
-			case 'users':
 			
-			break;
 			case 'manage':
 			default:
 			
