@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2015 at 05:32 PM
+-- Generation Time: Jul 01, 2015 at 05:45 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.20
 
@@ -273,6 +273,20 @@ CREATE TABLE IF NOT EXISTS `client_config` (
 
 INSERT INTO `client_config` (`client_config_id`, `client_id`, `client_max_user`, `client_max_pages`, `client_max_email_lists`, `client_store_user`, `client_store_password`, `client_absolute_path`, `client_relative_path`, `client_database_host`, `client_database_username`, `client_database_password`, `client_database_name`, `client_modules`) VALUES
 (0, 0, 0, 0, 0, '', '', '0', 'www.razzle.me', 'localhost', 'interact_dbadmin', 'interact_db@dm1n', '', 'pages,news,events,articles,banners');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE IF NOT EXISTS `contact` (
+`id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `question` text NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -625,7 +639,7 @@ CREATE TABLE IF NOT EXISTS `page_content` (
   `parent` int(11) NOT NULL DEFAULT '0',
   `page_content_status` enum('published','private','pending') NOT NULL DEFAULT 'published',
   `page_content_image` varchar(255) NOT NULL DEFAULT '',
-  `page_content_member` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'determines if the page is for members only',
+  `page_content_member` tinyint(4) DEFAULT '0' COMMENT 'determines if the page is for members only',
   `page_content_custom_1` varchar(14) NOT NULL DEFAULT '0' COMMENT 'ipipeline module',
   `page_content_mirror` int(11) NOT NULL DEFAULT '0',
   `page_content_last_modified_date` int(11) NOT NULL DEFAULT '0',
@@ -634,7 +648,20 @@ CREATE TABLE IF NOT EXISTS `page_content` (
   `app_name` varchar(50) NOT NULL DEFAULT 'page',
   `page_content_show_in_menu` tinyint(4) NOT NULL DEFAULT '1',
   `custom_url` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `page_content`
+--
+
+INSERT INTO `page_content` (`page_content_id`, `client_id`, `page_content_added`, `page_content_url`, `page_content_publish_date`, `page_content_text`, `page_content_title`, `page_content_seo_title`, `page_content_seo_description`, `page_content_seo_keyword`, `page_content_sort_order`, `page_content_author`, `parent`, `page_content_status`, `page_content_image`, `page_content_member`, `page_content_custom_1`, `page_content_mirror`, `page_content_last_modified_date`, `page_content_last_modified_by`, `page_content_form`, `app_name`, `page_content_show_in_menu`, `custom_url`) VALUES
+(1, 0, 1435711239, 'services', 1435640400, 'This page will not be shown, select a subpage', 'Services', 'Servicea', 'Services :: Audio, Video, Navigation System, Accessories, Wheels, Tires', 'Services :: Audio, Video, Navigation System, Accessories, Wheels, Tires', 1, '21', 0, 'published', '', 0, '0', 0, 0, 0, '', 'page', 1, 'services'),
+(2, 0, 1435712000, 'audio-video', 1435640400, '<p><a href="http://cvsimotorsports.com/wp-content/uploads/2013/03/291.png"><img class="size-full wp-image-276 alignright" style="margin-left: 10px; margin-right: 10px; float: right;" src="http://cvsimotorsports.com/wp-content/uploads/2013/03/291.png" alt="291" width="291" height="100" /></a>Here  at CVSi Motorsports Inc. we really know about Car Audio. Our staff has  the knowledge to assist you in designing a stereo system to fit your  needs. Whether it&rsquo;s 50 Cent, Coldplay or Willie Nelson our fine audio  products and professional staff you can guarantee the sound will be  taken to a whole new level. For those of you who can&rsquo;t get enough bass,  we can really PUMP up the volume and make your system POUND! Come on in  and check out the latest in audio and video.</p>\r\n<p>We sell the latest in video and navigation products on the market!  Competitive pricing and an experienced staff, you&rsquo;re guaranteed to be  satisfied.</p>\r\n<p>&nbsp;</p>', 'Audio/Video', 'Audio Video', 'CVSi Motorsport has a large selection of the latest audio video selection in the Cedar Valley', 'Audio, Video, Navigation Systems For Cars,Trucks,Marine,Powersports,Watersports', 2, '21', 1, 'published', '', 0, '0', 0, 0, 0, '', 'page', 1, 'services/audio-video'),
+(3, 0, 1435714726, 'wheels-tires', 1435640400, '<p>Upgrade your Car/Truck with new Wheels from CVSi Motorsports. We carry  the top brands of wheels and tires at competitive prices. Everything  from off-road to the sexy staggared look for your hot rod or import. We  have the wheel and tire package to fit you at the prices you can afford.</p>\r\n<h3>We have the largest selection of wheels in the Cedar Valley</h3>\r\n<p>Here are just a few Brands we carry, if you don&acirc;&euro;&trade;t see a brand you  like,we most likely sell it, give us a call or drop us an email.</p>\r\n<p><a href="http://cvsimotorsports.com/wp-content/uploads/2013/03/460.jpg"><img class="alignnone size-full wp-image-285" src="http://cvsimotorsports.com/wp-content/uploads/2013/03/460.jpg" alt="460" width="460" height="212" /></a></p>', 'Wheels &amp; Tires', 'Wheels & Tires', 'CVSi Motorsports has the largest selection of wheels and tires in the Cedar Valley at competitive prices', 'Wheels, Tires, Powersports, Auto, Trucks, American Racing, Akuza, Boss, KMC Wheels, Foose, Asanti, Giovanna, Eagle Allows, DUB, Dip, Boss', 1, '21', 1, 'published', '', 0, '', 0, 1435714726, 0, '', 'page', 1, 'services/wheels-tires'),
+(4, 0, 1435714840, 'window-tinting', 1435640400, '<strong>CVSi Motorsports</strong> has been serving the Cedar Valley for  30 years for their window tinting needs. We service not only just cars  but commercial and residential window tinting.  Get your windows tined and&hellip; \r\n<ul>\r\n<li>Keeps interior cool</li>\r\n<li>Enhances your look</li>\r\n<li>Increases value</li>\r\n<li>Provides UV protection</li>\r\n<li>Reduces the glare in your eyes</li>\r\n</ul>\r\nWith competitive pricing and an experienced staff, you can rest assure  that you will get the best price with the best quality. Call us for  pricing or to schedule your appointed today!', 'Window Tinting', 'Window Tinting', 'CVSi Does professional auto window tinting - we also do residential and commercial windows call us for a quote', 'Auto WIndow Tintint, Residential Window Tinting, Commercial WIndow Tinting', 3, '21', 1, 'published', '', 0, '0', 0, 0, 0, '', 'page', 1, 'services/window-tinting'),
+(5, 0, 1435715017, 'boat-servicing-accessories', 1435640400, '<div class="col-sm-8">CVSi Motorsports Inc. Now offers boat repair, maintenance, and upgrades!  With a Mercruiser Certified Master Technician you can assure we are  able to provide service both with quality and experience.\r\n<h3>Our services include:</h3>\r\nBoat Repair Service: Preventive maintenance, Season maintenance as well as electronic and performance upgrades. Boat Detailing: We offer a full complete detailing call us for pricing\r\n<h3>We now sell Manitou Pontoon Boats</h3>\r\nWe are now an authorized Manitou Boat Dealer. Come check out our line of  Pontoon boats and check see how &Acirc;&nbsp;Manitou Pontoon boats can make this  summer perfect! You can choose between leisure and enjoy hours of family  enjoyment. Or choose from their Performance boats to take family fun on  the water to a while new Level!\r\n<h3>Financing is available</h3>\r\nWe also offer financing, ask us about our financing program and see if we can make your next purchase affordable.</div>\r\n<div class="col-sm-4">\r\n<h3>Audio/Video</h3>\r\n<a href="http://cvsimotorsports.com/wp-content/uploads/2013/03/291.jpg"><img class="alignnone size-full wp-image-294" src="http://cvsimotorsports.com/wp-content/uploads/2013/03/291.jpg" alt="291" width="291" height="219" /></a>\r\n<h3>Servicing</h3>\r\n<a href="http://cvsimotorsports.com/wp-content/uploads/2013/03/wrap.jpg"><img class="alignnone size-full wp-image-296" src="http://cvsimotorsports.com/wp-content/uploads/2013/03/wrap.jpg" alt="wrap" width="291" height="217" /></a></div>', 'Boat Servicing &amp; Accessories', 'Boat Servicing & Accessories', 'CVSi Motorsports Inc. Now offers boat repair, maintenance, and upgrades! With a Mercruiser Certified Master Technician you can assure we are able to provide service both with quality and experience. ', 'Boat Servicing, WInterizing and Accessories', 0, '21', 1, 'published', '', 0, '', 0, 1435715017, 0, '', 'page', 1, 'services/boat-servicing-accessories'),
+(6, 0, 1435715168, 'auto-marine-detailing', 1435640400, '<div class="entry-content">\r\n<p>It&rsquo;s all about the details, at CVSi Motorsports we understand that  keeping your car, boat, truck or toy clean not only extends the life of  it, but keeps it looking like new. We offer Car, Truck, Boat detailing  from a good shampoo and wax to full top to bottom rub down.</p>\r\n<p><strong>Call us for more information or to schedule an appointment 319-266-2867</strong></p>\r\n</div>', 'Auto &amp; Marine Detailing', 'Auto & Marine Servicing', '', 'Auto, Truck, Marine, Detailing, Shampooing, ', 0, '21', 1, 'published', '', 0, '0', 0, 0, 0, '', 'page', 1, 'servicing/auto-marine-servicing'),
+(7, 0, 1435715220, 'contact-us', 1435640400, '&nbsp;We would love to hear from you! Please fill out this form and we will get in touch with you as soon as we can.', 'Contact us', 'Contact CVSi Motorsports', '', '', 0, '21', 0, 'published', '', 0, '0', 0, 0, 0, '', 'page', 1, 'contact-us');
 
 -- --------------------------------------------------------
 
@@ -658,7 +685,7 @@ CREATE TABLE IF NOT EXISTS `page_content_log` (
   `page_content_log_timestamp` int(11) NOT NULL DEFAULT '0',
   `user_id` int(11) NOT NULL DEFAULT '0',
   `page_content_id` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=234 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=236 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `page_content_log`
@@ -897,7 +924,9 @@ INSERT INTO `page_content_log` (`page_content_log_id`, `page_content_log_timesta
 (230, 1428532742, 24, 3),
 (231, 1428532823, 24, 3),
 (232, 1428532864, 24, 3),
-(233, 1428532886, 24, 3);
+(233, 1428532886, 24, 3),
+(234, 1435714726, 21, 3),
+(235, 1435715017, 21, 5);
 
 -- --------------------------------------------------------
 
@@ -1677,7 +1706,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_name`, `user_password`, `user_created`, `user_last_login`, `user_type`, `user_access`, `client_id`) VALUES
-(21, 'mike@interactivearmy.com', 'michael5', 1275257640, 1435548539, 0, 'god,admin', 0);
+(21, 'mike@interactivearmy.com', 'michael5', 1275257640, 1435710529, 0, 'god,admin', 0);
 
 -- --------------------------------------------------------
 
@@ -1887,6 +1916,12 @@ ALTER TABLE `client_auth_keys`
 --
 ALTER TABLE `client_config`
  ADD PRIMARY KEY (`client_config_id`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `customercomments`
@@ -2247,6 +2282,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 ALTER TABLE `client_auth_keys`
 MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `customercomments`
 --
 ALTER TABLE `customercomments`
@@ -2335,7 +2375,7 @@ MODIFY `page_calculators_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=91;
 -- AUTO_INCREMENT for table `page_content`
 --
 ALTER TABLE `page_content`
-MODIFY `page_content_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `page_content_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `page_content_downloads`
 --
@@ -2345,7 +2385,7 @@ MODIFY `page_content_downloads_id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `page_content_log`
 --
 ALTER TABLE `page_content_log`
-MODIFY `page_content_log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=234;
+MODIFY `page_content_log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=236;
 --
 -- AUTO_INCREMENT for table `pod_casts`
 --
