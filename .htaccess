@@ -9,7 +9,7 @@
   RewriteBase /
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)$ cvsi/index.php?/$1 [L]
+  RewriteRule ^(.*)$ 2015/index.php?/$1 [L]
 </IfModule>
  
 <IfModule !mod_rewrite.c>

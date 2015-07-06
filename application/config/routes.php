@@ -44,6 +44,7 @@ $route['gallery/page'] = 'gallery/index';
 $route['gallery/detail/(:num)'] = 'gallery/detail/$1';
 $route['page/(:any)'] = 'page/index/$1';
 $route['contact'] = 'page/contact';
+$route['quote'] = 'page/quote';
 
 $route['product/detail/(:num)'] = 'store/detail/$1';
 $route['store'] = 'store/index';

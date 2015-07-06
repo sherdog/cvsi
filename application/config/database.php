@@ -4,9 +4,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'michael5';
-$db['default']['database'] = 'cvsi';
+$db['default']['username'] = 'clearvie_dbadmin';
+$db['default']['password'] = 'db@dm1n';
+$db['default']['database'] = 'clearvie_site';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

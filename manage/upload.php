@@ -4,9 +4,7 @@
 /* We are going to be upload and storing the gallery images /*
 /* Create thumbnails and return a true statement! */
 
-if ($_SERVER['SERVER_ADDR'] != $_SERVER['REMOTE_ADDR']){
-  exit; //just for good measure
-}
+
 
 include('master.inc.php');
 include('application.php');

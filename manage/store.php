@@ -196,8 +196,6 @@ if($_POST['action'] == 'addproduct' || $_POST['action'] == 'editproduct') {
 		
 		uploadFile($_FILES['file'], $filename); 		
 		$info['products_info_custom_6'] = $filename;
-		
-		
 	} 
 	
 	if($_FILES['spec']['name'] != "") {

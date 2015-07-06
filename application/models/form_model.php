@@ -1,6 +1,6 @@
 <?php
 
-class Form_model extends CI_Model {
+class QuoteModel extends CI_Model {
 
 	function __construct()
 	{
@@ -17,9 +17,9 @@ class Form_model extends CI_Model {
        * @return Bool - TRUE or FALSE
        */
 
-	function SaveForm($form_data)
+	function saveQuote($form_data)
 	{
-		$this->db->insert('contact', $form_data);
+		$this->db->insert('quotes', $form_data);
 		
 		if ($this->db->affected_rows() == '1')
 		{

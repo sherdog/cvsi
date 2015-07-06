@@ -17,7 +17,9 @@
 .pagination-container { 
     margin-bottom: 40px;
 }
-
+#myCarousel {
+    display: none;
+}
 .pager li > a, .pager li > span {
     background-color: transparent;
     border: 1px solid #FF0000;
@@ -34,7 +36,12 @@
 
 .black-container.gallery {
     padding-bottom: 40px;
-    margin: 144px 0px 0px 0px;
+    margin: 70px 0px 0px 0px;
+}
+
+.black-container.page {
+    padding-bottom: 40px;
+    margin: 70px 0px 0px 0px;
 }
 
 .gallery-image 
@@ -233,7 +240,7 @@ h1.black-container-title.page {
     color:  #ff0000;
     font-family: "Roboto", sans-serif;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 20px;
 }
 
@@ -540,7 +547,9 @@ h2.andmore {
 }
 
 @media screen and (min-width:768px) {
-
+    #carouselWeb {
+        display:block;
+    }
     footer {
         padding: 40px 0px;
     }
@@ -575,6 +584,7 @@ h2.andmore {
     .footer-nav li:first-child { 
         padding-left: 0px
      }
+     
     #carouselWeb {
         display:block;
     }
@@ -714,6 +724,16 @@ h2.andmore {
         background-color: transparent;
         padding:0px;
         margin: 0px;
+    }
+
+    .black-container.gallery {
+        padding-bottom: 40px;
+        margin: 144px 0px 0px 0px;
+    }
+
+    .black-container.page {
+        padding-bottom: 40px;
+        margin: 144px 0px 0px 0px;
     }
 
     .navbar>.container .navbar-brand-centered, 

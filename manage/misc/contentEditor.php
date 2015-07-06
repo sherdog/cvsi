@@ -18,7 +18,7 @@
 	inline_styles : true,
 	theme_advanced_resizing : true,
 	forced_root_block : '',
-	keep_styles : false,
+	keep_styles : true,
 	inline : "yes",
 	template_templates: 
 	[

@@ -26,7 +26,7 @@
                     <?php
                     $prop = array(
                         'class' => 'img-responsive center-block',
-                        'src' => 'files/store/' . $defaultImage
+                        'src' => 'files/' . $defaultImage
                     );
                     echo img($prop);
                     ?>
