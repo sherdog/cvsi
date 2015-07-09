@@ -11,6 +11,43 @@ $trail->add("Dashboard", PAGE_DEFAULT);
 $trail->add("Storefront", PAGE_STORE);
 $page = $_GET['section'];
 
+
+if(isset($_GET['action']) && $_GET['action'] == 'deleteproductimage')
+{
+	//remove it from the db and remove the images ;)
+	$id = $_GET['id'];
+	$productID = $_GET['pid'];
+
+	//get the image name.
+	$imgRes = dbQuery('SELECT products_images_filename FROM store_products_images WHERE products_images_id = ' . $id);
+
+	if(dbNumRows($imgRes))
+	{
+		$img = dbFetchArray($imgRes);
+
+		if(file_exists(STORE_IMAGE_URL . $img['products_images_filename']))
+		{
+			$filename = $img['products_images_filename'];
+
+			foreach($galleryImageSizes as $name => $size)
+			{
+				$imgFilename = getThumbnailFilename($filename, $name);
+				unlink(STORE_IMAGE_URL . $imgFilename);
+			}
+			//delete the original
+			unlink(STORE_IMAGE_URL . $img['products_images_filename']);
+		}
+	}
+
+	dbQuery('DELETE FROM store_products_images WHERE products_images_id = ' . $id);
+
+	$message = "Deleted image successfully";
+
+	addMessage($message);
+	redirect(PAGE_STORE."?section=products&action=editproduct&id=".$productID);
+}
+
+
 if($_POST['action'] == 'updateorder') {
 	//we are going to update the order! most likely just the status of the order
 	//maybe even notify the customer!
@@ -191,27 +228,6 @@ if($_POST['action'] == 'addproduct' || $_POST['action'] == 'editproduct') {
 	$info['products_info_custom_4'] = ($_POST['products_info_custom_4']) ? $_POST['products_info_custom_4'] : '';
 	$info['products_info_custom_5'] = ($_POST['products_info_custom_5']) ? $_POST['products_info_custom_5'] : 0;
 	
-	if($_FILES['file']['name'] != "") {
-		$filename = fixFilename($_FILES['file']['name']);
-		
-		uploadFile($_FILES['file'], $filename); 		
-		$info['products_info_custom_6'] = $filename;
-	} 
-	
-	if($_FILES['spec']['name'] != "") {
-		$filename = fixFilename($_FILES['spec']['name']);
-		
-		uploadFile($_FILES['spec'], $filename);
-		makeThumbnail($filename, UPLOAD_DIR, 150, '', 'small');
-		makeThumbnail($filename, UPLOAD_DIR, 250, '', 'medium');
-		makeThumbnail($filename, UPLOAD_DIR, 500, '', 'large');
-		makeThumbnail($filename, UPLOAD_DIR, 800, '', 'xlarge');
-
-		$info['products_info_custom_7'] = $filename;
-		
-		
-	}
-	
 	if($_POST['action'] == 'addproduct') {
 	
 		$row['products_date_added'] = time();
@@ -221,8 +237,6 @@ if($_POST['action'] == 'addproduct' || $_POST['action'] == 'editproduct') {
 		dbPerform('store_products_info', $info, 'insert');
 		
 		$message = "Added " . $_POST['products_title'] . " successfully";
-		
-	
 	} 
 	
 	if($_POST['action'] == 'editproduct') {
@@ -232,28 +246,33 @@ if($_POST['action'] == 'addproduct' || $_POST['action'] == 'editproduct') {
 		$message = "Updated " . $_POST['products_title'] . " successfully";
 		
 	}
-	
-	if($_FILES['image']['name'] != "") {
-		$filename = fixFilename($_FILES['image']['name']);
-		
-		uploadFile($_FILES['image'], $filename);
-		
-		makeThumbnail($filename, UPLOAD_DIR, 150, '', 'small');
-		makeThumbnail($filename, UPLOAD_DIR, 250, '', 'medium');
-		makeThumbnail($filename, UPLOAD_DIR, 500, '', 'large');
-		makeThumbnail($filename, UPLOAD_DIR, 800, '', 'xlarge');
-		
-		$img['products_id'] = $productID;
-		$img['products_images_title'] = $filename;
-		$img['products_images_default'] = 1;
-		$img['products_images_filename'] = $filename;
-		
-		if($_POST['action'] == 'editproduct') {
-			dbPerform('store_products_images', $img, 'update', 'products_id = ' . $productID);
-		} else {
-			dbPerform('store_products_images', $img, 'insert');
-		}
-	} //we are going to upload an image for this product!
+
+	$filesArray = $_FILES['image'];
+
+	for($i = 0; $i < count($_FILES['image']); $i++)
+	{
+		if($_FILES['image']['name'][$i] != "")
+		{
+			$filename = fixFilename($_FILES['image']['name'][$i]);
+			uploadStoreImage($_FILES['image']['name'][$i], $_FILES['image']['tmp_name'][$i], $filename);
+			foreach($galleryImageSizes as $name => $size)
+			{
+				makeThumbnail($filename, STORE_IMAGE_PATH, $size, '', $name);
+			}
+			
+			$img['products_id'] = $productID;
+			$img['products_images_title'] = $filename;
+			$img['products_images_default'] = 1;
+			$img['products_images_filename'] = $filename;
+			
+			if($_POST['action'] == 'editproduct') {
+				dbPerform('store_products_images', $img, 'update', 'products_id = ' . $productID);
+			} else {
+				dbPerform('store_products_images', $img, 'insert');
+			}
+		} 
+	}
+
 	addMessage($message);
 	redirect(PAGE_STORE."?section=products&c=".$_POST['c']);
 
@@ -1440,40 +1459,38 @@ case 'products':
 													          <td class="pageTitleSub">Price $												              </td>
 													          <td class="pageTitleSub"><input type="text" name="products_price" id="products_price" class="textField-title" style="width:90px" value="<?=number_format($pInfo['products_price'],2,'.', ',')?>" /></td>
 												            </tr>
-													        <tr>
-													          <td class="pageTitleSub">Product Main Image</td>
-													          <td class="pageTitleSub"><input name="image" type="file" class="textField-title" id="image" /></td>
-												            </tr>
+												            <?php
+												            for($i=0; $i<5; $i++)
+												            {
+												            	if($i==0)
+												            	{
+												            		$default = "Default";
+												            	}
+												            	else
+												            	{
+												            		$default = "";
+												            	}
+												            	echo "<tr>";
+												            	echo "<td class=\"pageTitleSub\">".$default." Product Image</td>";
+												            	echo "<td class=\"pageTitleSub\"><input name=\"image[]\" type=\"file\" class=\"textField-title\" id=\"image_".$i."\" /></td>";
+												            	echo "</tr>";
+												            }
+												            ?>
                                                              <?
 															  if($_GET['action'] == 'editproduct') { //check to see if an image already exists if so then we want to allow the user to view the image
 															  	$imgCheck = dbQuery('SELECT * FROM store_products_images WHERE products_id = ' . $_GET['id']);
 																if(dbNumRows($imgCheck)) {
-																	echo "<tr>";
-																	echo "<td valign=\"top\" class=\"pageTitleSub\">Current Image <br><span style=\"font-size:10px; font-weight:normal;\">(click to enlarge)</a></td>";
-																	echo "<td>";
-																	$img = dbFetchArray($imgCheck);
-																	echo "<a href=\"../files/".$img['products_images_filename']."\" target=\"_blank\" class=\"title\"><img src=\"../files/".getThumbnailFilename($img['products_images_filename'], 'small')."\"></a>";	
-																	echo "</td>";
-																	echo "</tr>";
+																	
+																	while($imgInfo = dbFetchArray($imgCheck))
+																	{
+																		echo "<tr>";
+																		echo "<td value=\"top\" class=\"pageTitleSub\">Image: <br /><span style=\"font-size:10px; font-weight:normal\">(click to enlarge)</a></td>";
+																		echo "<td><a href=\"".STORE_IMAGE_URL . $imgInfo['products_images_filename']."\" target=\"_blank\" class=\"title\"><img src=\"".STORE_IMAGE_URL . getThumbnailFilename($imgInfo['products_images_filename'], 'small')."\" /><br /><a href=\"store.php?action=deleteproductimage&id=".$imgInfo['products_images_id']."&pid=".$_GET['id']."\">Delete</a></td>";
+																		echo "</tr>";
+																	}
 																}
 															  }
 															  ?>
-													        <?
-															  if($_GET['action'] == 'editproduct') { //check to see if an image already exists if so then we want to allow the user to view the image
-																if($pInfo['products_info_custom_7'] != "") {
-																	echo "<tr>";
-																	echo "<td valign=\"top\" class=\"pageTitleSub\">Current Spec Sheet Image <br><span style=\"font-size:10px; font-weight:normal;\">(click to enlarge)</a></td>";
-																	echo "<td>";
-																	echo "<a href=\"../files/".$pInfo['products_info_custom_7']."\" target=\"_blank\" class=\"title\"><img src=\"../files/".getThumbnailFilename($pInfo['products_info_custom_7'], 'small')."\"></a>";		
-																	echo "</td>";
-																	echo "</tr>";
-																}
-															  }
-															  ?>
-													        <tr>
-													          <td class="pageTitleSub">Spec Sheet</td>
-													          <td class="pageTitleSub"><input name="file" type="file" class="textField-title" id="file" /></td>
-												            </tr>
 													        <tr>
 													          <td class="pageTitleSub">Category</td>
 													          <td class="pageTitleSub"><select name="c" id="c" class="textField-title">

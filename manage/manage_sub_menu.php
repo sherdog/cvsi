@@ -1,13 +1,22 @@
 <?php
 $subpageArray = array(
                 'Pages' => 'webpage',
+                'Photo Gallery' => 'gallery'
+                );
+
+/*
+ 'Pages' => 'webpage',
                 'Events' => 'event',
                 'Blog'  => 'blog',
                 'Photo Gallery' => 'gallery',
                 'News' => 'news',
                 'Banners' => 'banners'
                 );
+*/
+
 ?>
+
+
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>

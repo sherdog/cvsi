@@ -1,11 +1,7 @@
 <?php
 $subpageArray = array(
                 'Pages' => 'webpage',
-                'Events' => 'event',
-                'Blog'  => 'blog',
-                'Photo Gallery' => 'gallery',
-                'News' => 'news',
-                'Banners' => 'banners'
+                'Photo Gallery' => 'gallery'
                 );
 ?>
 

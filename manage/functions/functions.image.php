@@ -10,6 +10,14 @@ function uploadFile($formfile,$filename="") {
 
 }
 
+function uploadStoreImage($name, $tmpname, $filename="")
+{
+	if ($filename=="")
+		$filename = $name;
+			
+	move_uploaded_file($tmpname, UPLOAD_DIR_STORE.$filename);
+}
+
 function uploadBanner($formfile,$filename="") {
 
 	if ($filename=="")
