@@ -43,7 +43,7 @@
               <img src="images/iconHomepagePerformance.png" class="img-responsive center"  />
             </div><!-- ./black-outline-box-image -->
             <h2>PERFORMANCE</h2>
-            <p>From aftermarket grills to lift kits, we have a large selection of aftermarket goodies that will make your ride stand out from the rest.</p>
+            <p>Looking to give your ride a little extra boost? See how we can improve the performance of your car or truck.</p>
           </div>
         </div><!-- /.col-lg-3 -->
 
@@ -57,7 +57,7 @@
           </p>
           <div class="red-quote-box">
             <p>
-              <a href="#" class="btn btn-inverse btn-outline btn-lg">VIEW OUR SERVICES</a>
+              <a href="<?php echo base_url('page/services'); ?>" class="btn btn-inverse btn-outline btn-lg">VIEW OUR SERVICES</a>
             </p>
          </div> <!-- ./red-quote-box -->
          

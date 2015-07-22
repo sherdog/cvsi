@@ -13,7 +13,7 @@ if( ! function_exists("product_listing"))
 		echo '<a href="' . base_url() . 'product/detail/' . $product->products_id . '">';
 		$prop = array(
 			'class' => 'img-responsive',
-			'src' => 'files/' . $defaultImage
+			'src' => 'files/store/' . $defaultImage
 		);
 		echo img($prop);
 		echo "</a>";

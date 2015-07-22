@@ -1,5 +1,4 @@
 <?
-include "master.inc.php";
 include 'application.php';
 
 

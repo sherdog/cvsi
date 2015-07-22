@@ -26,7 +26,7 @@
                     <?php
                     $prop = array(
                         'class' => 'img-responsive center-block',
-                        'src' => 'files/' . $defaultImage
+                        'src' => 'files/store/' . $defaultImage
                     );
                     echo img($prop);
                     ?>
@@ -45,19 +45,26 @@
                     <?php
                     if(count($productImages) > 1) : ?>
                     <h3 class="product-detail-images"></h3>
-                    <hr class="product-detail-hr"></hr>
+                    <hr class="product-detail-hr" />
+                    <div class="row">
+                        
+                        
+                    
                     <?php foreach($productImages as $image) : ?>
-                    <a href="<?php echo img('files/store/' . $this->image_helper->getImage($image->products_image_filename, 'large')); ?>" data-toggle="lightbox" data-gallery="multiimages">
-                    <?php
-                        $prop = array(
-                            'class' => 'product-detail-image-thumb img-responsive',
-                            'src' => 'files/store/' . $this->image_helper->getImage($image->product_images_filename, 'thumb')
-                        );
+                        <div class="col-sm-3">
+                            <a href="<?php echo base_url('files/store/' . getImage($image->products_images_filename, 'large'))  ; ?>" data-toggle="lightbox" data-gallery="multiimages">
+                        <?php
+                            $prop = array(
+                                'class' => 'product-detail-image-thumb img-responsive',
+                                'src' => 'files/store/' . getImage($image->products_images_filename, 'thumb')
+                            );
 
-                        echo img($prop);
-                    ?>
-                    </a>
+                            echo img($prop);
+                        ?>
+                        </a>
+                        </div>
                     <?php endforeach; ?>
+                    </div>
                     <?php endif; ?>
 
                 </div> <!-- ./col-sm-6 -->

@@ -9,13 +9,13 @@
        <div class="col-sm-10">
         <footer>
           <ul class="footer-nav">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">For Sale</a></li>
-            <li><a href="#">CVSi Gear</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Get a Quote</a></li>
+            <li><a href="<?php echo base_url(); ?>">Home</a></li>
+            <li><a href="<?php echo base_url('page/services'); ?>">Services</a></li>
+            <li><a href="<?php echo base_url('gallery'); ?>">Gallery</a></li>
+            <li><a href="<?php echo base_url('store'); ?>">For Sale</a></li>
+            <li><a href="<?php echo base_url('events'); ?>">CVSi Gear</a></li>
+            <li><a href="<?php echo base_url('contact'); ?>">Contact</a></li>
+            <li><a href="<?php echo base_url('quote'); ?>">Get a Quote</a></li>
           </ul>
           <p class="credits">&copy; 2015 CVSi Motorsports, Inc. All Right Reserved   <br />
             <a href="http://interactivearmy.com" target="_blank"><img src="<?php echo base_url(); ?>images/websiteby.png" /></a>

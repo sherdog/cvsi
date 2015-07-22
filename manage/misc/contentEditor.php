@@ -1,4 +1,4 @@
-<script language="javascript">
+<script language="javascript" type="text/javascript">
   tinyMCE.init({
 	mode : "specific_textareas",
 	editor_selector : "mceEditor",

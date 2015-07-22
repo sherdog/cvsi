@@ -48,6 +48,7 @@
             <div class="form-group">
                 <?php echo form_submit( 'submit', 'Submit', "class='btn btn-primary btn-outline btn-block'"); ?>
             </div>
+            <input type="hidden" name="phone_number" id="phone_number" class="required" value="" />
             <?php echo form_close(); ?>
         </div>
         <div class="col-sm-4">

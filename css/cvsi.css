@@ -8,6 +8,8 @@
         z-index: 20;
     }
 
+.gallery-detail-image { min-height: 200px; }
+
 .nav a, .nav a:link .nav a:visited, .nav a:active, .nav a:hover
 {
     font-family: 'Roboto', sans-serif; 
@@ -42,11 +44,12 @@
 .black-container.page {
     padding-bottom: 40px;
     margin: 70px 0px 0px 0px;
+    min-height: 400px;
 }
 
 .gallery-image 
 {
-    min-height: 340px;
+    min-height: 280px;
 }
 
 .gallery-detail-image {

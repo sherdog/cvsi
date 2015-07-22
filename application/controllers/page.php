@@ -37,6 +37,7 @@ class Page extends CI_Controller {
 	function quote()
 	{
 		$this->load->model('quote_model');
+		$this->load->helper('site_helper');
 
 		$this->form_validation->set_rules('name', 'Name', 'required|max_length[100]');			
 		$this->form_validation->set_rules('year_make_model', 'Year/Make/Model', 'max_length[255]');			
@@ -56,7 +57,11 @@ class Page extends CI_Controller {
 		else // passed validation proceed to post success logic
 		{
 		 	// build array for the model
-			
+			if($this->input->post('phone_number') != '')
+			{
+				exit();
+			}
+
 			$form_data = array(
 					       	'name' => set_value('name'),
 					       	'year_make_model' => set_value('year_make_model'),
@@ -75,14 +80,18 @@ class Page extends CI_Controller {
 			
 
 			$this->load->library('email');
+			$recipients = getFormRecipients();
+			$emailTos = explode(',', $recipients->settings_value);
+			foreach($emailTos as $to)
+			{
+				$this->email->from('noreply@cvsimotorsports.com', 'CVSi Website Contact');
+				$this->email->to($to);
+				$this->email->mailtype = 'html';
+				$this->email->subject('Website Contact Inquiry');
+				$this->email->message($emailMessage);
 
-			$this->email->from('requests@cvsimotorsports.com', 'Quote Request');
-			$this->email->to($this->config->item('form_email'));
-			$this->email->mailtype = 'html';
-			$this->email->subject('Quote Request Inquiry');
-			$this->email->message($emailMessage);
-
-			$this->email->send();
+				$this->email->send();
+			}
 
 			if ($this->quote_model->saveQuote($form_data) == TRUE) // the information has therefore been successfully saved in the db
 			{
@@ -100,6 +109,8 @@ class Page extends CI_Controller {
 	}
 
 	function contact() {
+
+		$this->load->helper('site_helper');
 
 		$this->form_validation->set_rules('name', 'Name', 'required|max_length[255]');			
 		$this->form_validation->set_rules('question', 'Question', 'required');			
@@ -119,6 +130,11 @@ class Page extends CI_Controller {
 		{
 		 	// build array for the model
 			
+			if($this->input->post('phone_number') != '')
+			{
+				exit();
+			}
+
 			$form_data = array(
 					       	'name' => set_value('name'),
 					       	'question' => set_value('question'),
@@ -127,7 +143,7 @@ class Page extends CI_Controller {
 						);
 			
 
-			$emailMessage = "A quote submission was submitted below is there information<br /><br /><br />";
+			$emailMessage = "<p>A contact submission was submitted below is there information</p><br />";
 			$emailMessage .= "<strong>Name</strong>: " . $form_data['name'] ."<br />";
 			$emailMessage .= "<strong>Email</strong>: " . $form_data['email'] . "<br />";
 			$emailMessage .= "<strong>Phone</strong>: " . $form_data['phone'] . "<br />";
@@ -136,14 +152,19 @@ class Page extends CI_Controller {
 			
 
 			$this->load->library('email');
+			$recipients = getFormRecipients();
+			$emailTos = explode(',', $recipients->settings_value);
+			foreach($emailTos as $to)
+			{
+				$this->email->from('noreply@cvsimotorsports.com', 'CVSi Website Contact');
+				$this->email->to($to);
+				$this->email->mailtype = 'html';
+				$this->email->subject('Website Contact Inquiry');
+				$this->email->message($emailMessage);
 
-			$this->email->from('requests@cvsimotorsports.com', 'Quote Request');
-			$this->email->to($this->config->item('form_email'));
-			$this->email->mailtype = 'html';
-			$this->email->subject('Quote Request Inquiry');
-			$this->email->message($emailMessage);
-
-			$this->email->send();
+				$this->email->send();
+			}
+			
 			// run insert model to write data to db
 		
 			if ($this->form_model->SaveForm($form_data) == TRUE) // the information has therefore been successfully saved in the db

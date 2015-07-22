@@ -1,5 +1,4 @@
 <?
-include('master.inc.php');
 include('application.php');
 if(!$_SESSION['user_logged_in'] || !isset($_SESSION['client'])){
 	addError('Your session has timed out please login again');

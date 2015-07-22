@@ -1,6 +1,5 @@
 <?php
 
-include('master.inc.php');
 include('application.php');
 
 //what section

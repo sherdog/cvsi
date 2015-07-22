@@ -2,7 +2,6 @@
 //used in conjuction with the gallery area
 //display form to add caption and set sort order number.
 
-include('master.inc.php');
 include('application.php');
 
 if(!isset($_GET['gallery'])) { echo "Gallery is not set!"; }

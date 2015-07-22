@@ -1,5 +1,4 @@
 <?
-include('master.inc.php');
 include('application.php');
 
 if(!$_SESSION['user_logged_in'] || !isset($_SESSION['client'])){
@@ -797,9 +796,10 @@ $(document).ready(function() {
 });
 </script>
 <script type="text/javascript" src="jscripts/tiny_mce/tiny_mce.js"></script>
-<?
-	include('misc/contentEditor.php');
+<?php
+
 }
+	include('misc/contentEditor.php');
 ?>
 <script type="text/javascript" src="jscripts/tiny_mce/plugins/imagemanager/js/mcimagemanager.js"></script>
 <script language="javascript">
@@ -1511,7 +1511,8 @@ switch($_GET['section']) {
 								  ?>
 								  </td>
 								  <td><?=get_gallery_image_count($gInfo['gallery_id'])?></td>
-                                  <td align="right" ><a class="table_edit_link" href="<?=PAGE_MANAGE?>?action=edit&section=gallery&id=<?=$gInfo['gallery_id']?>">Edit</a> <a class="table_delete_link" href="<?=PAGE_MANAGE?>?action=delete&section=gallery&id=<?=$gInfo['gallery_id']?>" onclick="return confirm('Are you sure you want to delete <?=output($gInfo['gallery_title'])?>?');">Delete</a></td>
+                                  <td align="right" ><a class="table_edit_link" href="<?=PAGE_MANAGE?>?action=edit&section=gallery&id=<?=$gInfo['gallery_id']?>">Edit</a> 
+                                  	<a class="table_delete_link" href="<?=PAGE_MANAGE?>?action=delete&section=gallery&id=<?=$gInfo['gallery_id']?>" onclick="return confirm('Are you sure you want to delete <?=output($gInfo['gallery_title'])?>?');">Delete</a></td>
 								</tr>
 								<?
 								$count++;
@@ -1599,7 +1600,7 @@ switch($_GET['section']) {
                             
                             </td>
                           </tr>
-                        </table>      <p>&nbsp;</p></td>
+                        </table> <p>&nbsp;</p></td>
                       </tr>
   					</table></form>
                     <script language="javascript">
@@ -1621,53 +1622,56 @@ switch($_GET['section']) {
 		break;
 		case 'images':
 				?>
-				<table w border="0" cellspacing="0" cellpadding="0" >
-				  <tr>
-				    <td width="785" valign="top" class="formBody"><br />
-                    <h1>Images for <? print_gallery_title($_GET['gallery']); ?></h1>
-			         
-                     <div class="galleryAdd">
-                     	<form>
-                        <div style="display: inline; border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;">
-                            <span id="spanButtonPlaceholder"></span>
-                        </div>
-                    	</form>
-                    	<div id="divFileProgressContainer" style="height: 45px;"></div>
-                    </div>
-                    <div id="thumbnails"></div>
-                    <div class="clear"></div>
-                     <?
-					//display current images!
-					print_gallery_image_thumbs($_GET['gallery']);
-					?>
-                    
-                     
-				    <div class="mb20"></div>
-				    </td>
-				    <td width="250" valign="top">
-                    	<table width="100%" border="0" cellspacing="0" cellpadding="">
-                          <tr>
-                            <td>
-                            <div style="margin:10px 10px 10px 10px;">
-                              <table width="100%" border="0" cellspacing="0" cellpadding="5" class="actionBox">
-                                <tr>
-                                  <td class="headerCell"><h2>Publish Gallery</h2></td>
-                                </tr>
-                                <tr>
-                                  <td><strong>Gallery added on:</strong><br /><?=print_gallery_date_added($_GET['gallery'])?>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="saveField"><input name="button" type="submit" class="secondaySubmit" id="button" value="Save" /></td>
-                                </tr>
-                              </table>
-				          </div>
-                          </td>
-			          	</tr>
-				      </table>
-                    </td>
-			      </tr>
-  				</table>
+				<form action="manage.php" method="get">
+					<input type="hidden" name="section" value="gallery" />
+					<table w border="0" cellspacing="0" cellpadding="0" >
+					  <tr>
+					    <td width="785" valign="top" class="formBody"><br />
+	                    <h1>Images for <? print_gallery_title($_GET['gallery']); ?></h1>
+				         
+	                     <div class="galleryAdd">
+	                     	<form>
+	                        <div style="display: inline; border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;">
+	                            <span id="spanButtonPlaceholder"></span>
+	                        </div>
+	                    	</form>
+	                    	<div id="divFileProgressContainer" style="height: 45px;"></div>
+	                    </div>
+	                    <div id="thumbnails"></div>
+	                    <div class="clear"></div>
+	                     <?
+						//display current images!
+						print_gallery_image_thumbs($_GET['gallery']);
+						?>
+	                    
+	                     
+					    <div class="mb20"></div>
+					    </td>
+					    <td width="250" valign="top">
+	                    	<table width="100%" border="0" cellspacing="0" cellpadding="">
+	                          <tr>
+	                            <td>
+	                            <div style="margin:10px 10px 10px 10px;">
+	                              <table width="100%" border="0" cellspacing="0" cellpadding="5" class="actionBox">
+	                                <tr>
+	                                  <td class="headerCell"><h2>Publish Gallery</h2></td>
+	                                </tr>
+	                                <tr>
+	                                  <td><strong>Gallery added on:</strong><br /><?=print_gallery_date_added($_GET['gallery'])?>
+	                                  </td>
+	                                </tr>
+	                                <tr>
+	                                  <td class="saveField"><input name="button" type="submit" class="secondaySubmit" id="button" value="Save" /></td>
+	                                </tr>
+	                              </table>
+					          </div>
+	                          </td>
+				          	</tr>
+					      </table>
+	                    </td>
+				      </tr>
+	  				</table>
+  				</form>
 				<?
 		break;
 

@@ -2,6 +2,15 @@
 define('this_php', basename($_SERVER['PHP_SELF']));
 $alpha = array('a','b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l','m', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'all');
 
+$local = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== FALSE) ? true : false;
+
+define('LOCAL', $local);
+
+
+include('master.inc.php');
+
+error_reporting('E_NONE');
+
 //setup application constants
 	include(MANAGE_PATH . 'misc/filenames.php');
 	include(MANAGE_PATH . 'misc/breadcrumb.php');

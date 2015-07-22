@@ -19,9 +19,14 @@
                 </div>
             </div> <!-- ./row -->
             <div class="row">
-                <?php foreach($products as $product) : ?>
-                    <?php product_listing_single($product); ?>
-                <?php endforeach; ?>
+                <?php if(count($products)) : ?>
+                    <?php foreach($products as $product) : ?>
+                        <?php product_listing_single($product); ?>
+                    <?php endforeach; ?>
+                <?php else : ?>
+
+                <p>Sorry, we have nothing for sale online yet, check back!</p>
+                <?php endif; ?>
             </div> <!-- ./row -->
              <div class="row"> <!-- row -->
                 <div class="col-sm-12" style="text-align:center;">

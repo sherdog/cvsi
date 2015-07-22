@@ -16,7 +16,7 @@
 | environments.
 |
 */
-$config['base_url'] = 'http://cvsimotorsports.com/2015/';
+$config['base_url'] = 'http://cvsimotorsports.com/';
 
 /*
 |--------------------------------------------------------------------------

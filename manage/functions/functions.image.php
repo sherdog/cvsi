@@ -14,7 +14,8 @@ function uploadStoreImage($name, $tmpname, $filename="")
 {
 	if ($filename=="")
 		$filename = $name;
-			
+	//exit('Move uploaded file: ' . $name . ' : ' . $tmpname . ' : ' . $filename . ' to: ' . UPLOAD_DIR_STORE);
+
 	move_uploaded_file($tmpname, UPLOAD_DIR_STORE.$filename);
 }
 

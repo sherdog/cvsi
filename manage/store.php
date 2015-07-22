@@ -1,5 +1,4 @@
 <?
-include('master.inc.php');
 include('application.php');
 
 if(!$_SESSION['user_logged_in'] || !isset($_SESSION['client'])){
@@ -220,7 +219,7 @@ if($_POST['action'] == 'addproduct' || $_POST['action'] == 'editproduct') {
 	$row['products_featured'] = ($_POST['products_featured']) ? $_POST['products_featured'] : 0;
 	$row['products_release_date'] = strtotime($_POST['products_release_date']);
 	$row['products_flat_shipping_price'] = $_POST['products_flat_shipping_price'];
-	
+	$row['products_desc'] = $_POST['products_info_desc'];
 	$info['products_info_desc'] = $_POST['products_info_desc'];
 	$info['products_info_custom_1'] = ($_POST['products_info_custom_1']) ? $_POST['products_info_custom_1'] : '';
 	$info['products_info_custom_2'] = ($_POST['products_info_custom_2']) ? $_POST['products_info_custom_2'] : '';
@@ -254,7 +253,9 @@ if($_POST['action'] == 'addproduct' || $_POST['action'] == 'editproduct') {
 		if($_FILES['image']['name'][$i] != "")
 		{
 			$filename = fixFilename($_FILES['image']['name'][$i]);
+
 			uploadStoreImage($_FILES['image']['name'][$i], $_FILES['image']['tmp_name'][$i], $filename);
+
 			foreach($galleryImageSizes as $name => $size)
 			{
 				makeThumbnail($filename, STORE_IMAGE_PATH, $size, '', $name);
@@ -262,14 +263,10 @@ if($_POST['action'] == 'addproduct' || $_POST['action'] == 'editproduct') {
 			
 			$img['products_id'] = $productID;
 			$img['products_images_title'] = $filename;
-			$img['products_images_default'] = 1;
+			$img['products_images_default'] = ($i===0) ? 1 : 0;
 			$img['products_images_filename'] = $filename;
 			
-			if($_POST['action'] == 'editproduct') {
-				dbPerform('store_products_images', $img, 'update', 'products_id = ' . $productID);
-			} else {
-				dbPerform('store_products_images', $img, 'insert');
-			}
+			dbPerform('store_products_images', $img, 'insert');
 		} 
 	}
 
@@ -1472,7 +1469,7 @@ case 'products':
 												            	}
 												            	echo "<tr>";
 												            	echo "<td class=\"pageTitleSub\">".$default." Product Image</td>";
-												            	echo "<td class=\"pageTitleSub\"><input name=\"image[]\" type=\"file\" class=\"textField-title\" id=\"image_".$i."\" /></td>";
+												            	echo "<td class=\"pageTitleSub\"><input name=\"image[".$i."]\" type=\"file\" class=\"textField-title\" id=\"image_".$i."\" /></td>";
 												            	echo "</tr>";
 												            }
 												            ?>
@@ -1485,7 +1482,7 @@ case 'products':
 																	{
 																		echo "<tr>";
 																		echo "<td value=\"top\" class=\"pageTitleSub\">Image: <br /><span style=\"font-size:10px; font-weight:normal\">(click to enlarge)</a></td>";
-																		echo "<td><a href=\"".STORE_IMAGE_URL . $imgInfo['products_images_filename']."\" target=\"_blank\" class=\"title\"><img src=\"".STORE_IMAGE_URL . getThumbnailFilename($imgInfo['products_images_filename'], 'small')."\" /><br /><a href=\"store.php?action=deleteproductimage&id=".$imgInfo['products_images_id']."&pid=".$_GET['id']."\">Delete</a></td>";
+																		echo "<td><a href=\"".STORE_IMAGE_URL . $imgInfo['products_images_filename']."\" target=\"_blank\" class=\"title\"><img src=\"".STORE_IMAGE_URL . getThumbnailFilename($imgInfo['products_images_filename'], 'thumb')."\" /><br /><a href=\"store.php?action=deleteproductimage&id=".$imgInfo['products_images_id']."&pid=".$_GET['id']."\">Delete</a></td>";
 																		echo "</tr>";
 																	}
 																}

@@ -23,6 +23,7 @@ class Gallery_model extends CI_Model {
     {  
         $this->db->select("*");
         $this->db->from('gallery');
+        $this->db->order_by('gallery_date_added', 'DESC');
         $this->db->limit($limit, $offset);
         $query = $this->db->get();
 
@@ -33,6 +34,24 @@ class Gallery_model extends CI_Model {
 
     function getGalleryDefaultImage($galleryID=null)
     {
+
+
+        $this->db->select('*');
+        $this->db->from('gallery_images');
+        $this->db->where('gallery_id', $galleryID);
+        $this->db->where('gallery_image_featured', 1);
+        $this->db->order_by('gallery_image_id', 'asc');
+        $this->db->limit(1);
+
+        $query = $this->db->get();
+
+        $result = $query->row();
+
+        if($result)
+        {
+            return $result;
+        }
+
         $this->db->select('*');
         $this->db->from('gallery_images');
         $this->db->where('gallery_id', $galleryID);

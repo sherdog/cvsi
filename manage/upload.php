@@ -4,9 +4,6 @@
 /* We are going to be upload and storing the gallery images /*
 /* Create thumbnails and return a true statement! */
 
-
-
-include('master.inc.php');
 include('application.php');
 
 if($_FILES['Filedata']['name'] != "" && isset($_POST['gallery_id'])){

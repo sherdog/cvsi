@@ -1,5 +1,4 @@
 <?php
-include('master.inc.php');
 include('application.php');
 $id = $_GET['id'];
 
